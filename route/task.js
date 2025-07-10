@@ -90,6 +90,7 @@ module.exports = function({model, server}) {
 					username: Joi.string().allow(''),
 					password: Joi.string().allow(''),
 					hideElements: Joi.string().allow(''),
+					runners: Joi.array().items(Joi.string()),
 					headers: [
 						Joi.string().allow(''),
 						Joi.object().pattern(/.*/, Joi.string().allow(''))

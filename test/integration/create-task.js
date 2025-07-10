@@ -28,7 +28,8 @@ describe('POST /tasks', function() {
 				url: 'nature.com',
 				timeout: '30000',
 				standard: 'WCAG2AA',
-				ignore: ['foo', 'bar']
+				ignore: ['foo', 'bar'],
+				runners: ['axe']
 			};
 
 			await this.navigate({
@@ -61,11 +62,13 @@ describe('POST /tasks', function() {
 			assert.strictEqual(this.response.body.url, newTask.url);
 			assert.strictEqual(this.response.body.standard, newTask.standard);
 			assert.deepEqual(this.response.body.ignore, newTask.ignore || []);
+			assert.deepEqual(this.response.body.ignore, newTask.runners);
 		});
 	});
 
 	describe('with valid JSON and HTTP basic user authentication', function() {
 		let newTask;
+		const defaultRunners = ['htmlcs'];
 
 		beforeEach(async function() {
 			newTask = {
@@ -111,6 +114,7 @@ describe('POST /tasks', function() {
 			assert.strictEqual(this.response.body.password, newTask.password);
 			assert.strictEqual(this.response.body.standard, newTask.standard);
 			assert.deepEqual(this.response.body.ignore, newTask.ignore || []);
+			assert.deepEqual(this.response.body.ignore, defaultRunners);
 			assert.deepEqual(this.response.body.hideElements, newTask.hideElements);
 		});
 

@@ -29,6 +29,7 @@ console.log(grey('mode:        %s'), process.env.NODE_ENV);
 console.log(grey('database:    %s'), hideCredentialsInConnectionString(config.database));
 console.log(grey('cron:        %s'), config.cron);
 console.log(grey('workers:     %s'), config.numWorkers);
+console.log(grey('runners:  %s'), config.runners);
 
 const app = require('./app');
 
